@@ -18,7 +18,7 @@ class main
 
         }
         fclose($file);
-        print_r($record);
+        print_r($records);
     }
 
 }
