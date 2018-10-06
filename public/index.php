@@ -8,7 +8,17 @@ class main
 {
 
 
-    static public function start()
+   static  public function start($filename)
+   {
+       $records = csv::getRecords($filename);
+       print_r($records);
+   }
+
+}
+
+class csv
+{
+    static public function getRecords()
     {
         $file = fopen("example.csv","r");
         while(! feof($file))
@@ -18,9 +28,8 @@ class main
 
         }
         fclose($file);
-        print_r($records);
+       return $records;
     }
 
+
 }
-
-
