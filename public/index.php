@@ -16,6 +16,8 @@ class main
 
 }
 
+
+
 class csv
 {
     static  public  function getRecords($filename)
@@ -34,7 +36,7 @@ class csv
             else
 
             {
-                $records[] = recordFactory::create( $record);
+                $records[] = recordFactory::create($fieldNames, $record);
             }
             $count++;
         }
@@ -42,21 +44,42 @@ class csv
         fclose($file);
         return $records;
 
-
     }
 }
 class record {
-    public function __construct($record)
-        print_r($records)
+    public function __construct(Array $fieldNames = null, $values = null)
+    {
+        $record = array_combine($fieldNames, $values);
+        foreach ($record as $property => $value) {
+            $this->createProperty($property, $value);
+
+        }
+
+    }
+    public function returnArray()
+    { $array = (array) $this;
+
+
+        return $array;
+
+    }
+
+
+
+    public function createProperty($name = 'first', $value = 'Monica') {
+        $this->{$name} = $value;
+    }
+
 }
 class recordFactory
-{
 
-    public static function create(, Array $values = null)
+{
+    public static function create(Array $fieldNames = null, Array $values = null)
     {
 
 
-        $record = new record();
+
+        $record = new record($fieldNames, $values);
 
         return $record;
     }
