@@ -10,12 +10,28 @@ class main
     {
         $records = csv::getRecords($filename);
         $table = html::generateTable($records);
+        pageLayout::htmlPage($table);
 
-        echo $table;
 
     }
 }
 
+
+class pageLayout
+{
+    public static function htmlPage($page)
+    {   $html = '<html>';
+
+        $html .= '<head><link rel="stylesheet" type="text/css"
+                    href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/></head>';
+        $html .= '<body>';
+        // $html .= '<table>';
+        $html .= '<table class = "table table-striped">';
+        $html .= $page;
+        $html .= '</table></body></html>';
+        print $html;
+    }
+}
 
 
 
@@ -24,51 +40,66 @@ class html
     public static function generateTable($records)
     {
         //  print_r($records);
+        $out = '';
         $count = 0;
-        echo '<table border= "1" width="100%">';
+        // echo '<table border= "1" width="100%">';
         foreach ($records as $record) {
 
             //  echo '<table border= "1" width="100%">';
             if ($count == 0) {
                 $array = $record->returnArray();
                 $fields = array_keys($array);
+
+
+
                 $values = array_values($array);
 
-                echo '<thead>';
-                echo '<tr>';
-                foreach ($fields as $field) {
-                    echo '<th width="(100/x)%">' . $field . '</th>';
+                $out .='<thead>' ;
+                $out .= '<body>';
+                $out .= '<tr>';
+                foreach ($fields as $field)
+                {
+                    $out .= '<th width="(100/x)%">' . $field . '</th>';
                 }
 
-                echo '</tr>';
-                echo '</thead>';
+                $out .= '</tr>';
+                $out .= '</thead>';
 
-                echo '<tr>';
-                foreach ($values as $value) {
-                    echo '<td width="(100/x)%">' . $value . '</td>';
+                $out .= '<tr>';
+                foreach ($values as $value)
+                {
+                    $out .= '<td width="(100/x)%">' . $value . '</td>';
                 }
-                echo '</tr>';
+                $out .='<tr>';
+                $out .= '</body>';
 
-            } else {
+            }
+
+            else {
                 $array = $record->returnArray();
 
                 $values = array_values($array);
-
-                echo '<tr>';
+                $out .= '<body>';
+                $out .= '<tr>';
                 foreach ($values as $value) {
-                    echo '<td width="(100/x)%">' . $value . '</td>';
+                    $out .= '<td width="(100/x)%">' . $value . '</td>';
                 }
-                echo '</tr>';
+                $out .= '</tr>';
+                $out .= '</body>';
 
-
-            }
-            $count++;
+            } $count++;
 
             // echo '</table>';
+            //return $out;
 
         }
-        echo '</table>';
+        // $out .= '</table>';
+        return $out;
     }
+
+
+
+
 }
 
 class csv
@@ -113,7 +144,7 @@ class record {
     public function returnArray()
     { $array = (array) $this;
 
-        // print_r($this);
+
         return $array;
 
     }
