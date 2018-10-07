@@ -46,11 +46,12 @@ class record {
 class recordFactory
 {
 
-    public static function create(Array $array=null)
+    public static function create(Array $fieldNames = null, Array $values = null)
     {
 
 
-        $record = new record();
+
+        $record = new record($fieldNames, $values);
 
         return $record;
     }
