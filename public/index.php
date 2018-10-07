@@ -54,24 +54,24 @@ class html
 
                 $values = array_values($array);
 
-                $out .='<thead>' ;
-                $out .= '<body>';
-                $out .= '<tr>';
+                $out .='<thead><body><tr>' ;
+              //  $out .= '<body>';
+              //  $out .= '<tr>';
                 foreach ($fields as $field)
                 {
                     $out .= '<th width="(100/x)%">' . $field . '</th>';
                 }
 
-                $out .= '</tr>';
-                $out .= '</thead>';
+                $out .= '</tr></thead>';
+              //  $out .= '</thead>';
 
                 $out .= '<tr>';
                 foreach ($values as $value)
                 {
                     $out .= '<td width="(100/x)%">' . $value . '</td>';
                 }
-                $out .='<tr>';
-                $out .= '</body>';
+                $out .='</tr></body>';
+              //  $out .= '</body>';
 
             }
 
