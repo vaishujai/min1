@@ -16,29 +16,26 @@ class html
        // print_r($records);
         $count = 0;
         foreach ($records as $record) {
-            if ($count == 0) {
-                $array = $record->returnArray();
-                $fields = array_keys($array);
-                $values = array_values($array);
 
-                print_r($fields);
+
+               // print_r($fields);
                 $count = 0;
 
                 if ($count == 0) {
                     $array = $record->returnArray();
                     $fields = array_keys($array);
                     echo '<table border="1">';
-                    echo "<tr><td>First</td><td>last</td><td>UCID</td><td>grade</td><td>no</td>";
+                   // echo "<tr><td>First</td><td>last</td><td>UCID</td><td>grade</td><td>no</td>";
 
                     $values = array_values($array);
-                    print_r($fields);
+                   // print_r($fields);
                     echo '<tr>';
                     foreach ($values as $value) {
                         echo '<td>' . $value . '</td>';
                     }
                     echo '</tr>';
 
-                    print_r($values);
+                   // print_r($values);
 
                 } else {
                     $array = $record->returnArray();
@@ -53,18 +50,12 @@ class html
                 }
                 echo '</table>';
                 $count++;
-            } // print_r($values);
+            }// print_r($values);
 
-            else {
-                $array = $record->returnArray();
 
-                $values = array_values($array);
-                print_r($values);
-            }
-            $count++;
         }
     }
-}
+
 
 
 class csv {
